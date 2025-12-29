@@ -6,10 +6,10 @@ WORKDIR /app
 COPY Desktop/saas-platform/package*.json ./
 
 RUN npm install
-
+RUN npx prisma generate
 # نسخ بقية الملفات من المجلد الفرعي إلى بيئة العمل في الدوكر
 COPY Desktop/saas-platform/ .
-
+CMD npx prisma migrate deploy && npm run start:prod
 RUN npm run build
 
 EXPOSE 3000

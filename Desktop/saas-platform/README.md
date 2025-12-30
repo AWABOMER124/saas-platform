@@ -31,6 +31,15 @@
 $ npm install
 ```
 
+## Environment variables for Dokploy
+
+Set the following variables when running in production (e.g., in Dokploy):
+
+- `DATABASE_URL` – PostgreSQL connection string (URL-encode the password)
+- `JWT_SECRET` – secret used to sign JWTs
+- `NODE_ENV` – set to `production`
+- `PORT` – defaults to `3000` if not provided
+
 ## Compile and run the project
 
 ```bash

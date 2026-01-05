@@ -1,6 +1,11 @@
+ HEAD:Desktop/saas-platform/prisma/prisma.service.ts
 import { Injectable, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
 
 import { PrismaClient } from '../generated/prisma/client';
+
+import { Injectable, OnModuleInit, OnModuleDestroy } from '@nestjs/common';
+import { PrismaClient } from '@prisma/client';
+ main:Desktop/saas-platform/src/prisma/prisma.service.ts
 
 @Injectable()
 export class PrismaService

@@ -5,8 +5,9 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  // Connection URL is provided via prisma.config.ts using the DATABASE_URL env var
+  url      = env("postgresql://postgres:saas123579%40%23%40aA@backendapi-saascore-h269nw.1.sbqs5jdkk64c97wel61n8x3jd:5432/saas_core?schema=public")
 }
+
 
 enum UserRole {
   OWNER

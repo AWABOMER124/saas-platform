@@ -2,31 +2,22 @@ FROM node:20-alpine
 
 WORKDIR /app
 
- HEAD
-COPY package*.json ./
-RUN npm ci
-
-COPY prisma ./prisma
-RUN npx prisma generate
-
-COPY . .
-
+# Copy package files from the actual app folder inside the repo
 COPY Desktop/saas-platform/package*.json ./
 RUN npm ci
 
+# Prisma generate
 COPY Desktop/saas-platform/prisma ./prisma
+COPY Desktop/saas-platform/prisma.config.ts ./prisma.config.ts
 RUN npx prisma generate
- main
 
+# Copy the rest of the app
 COPY Desktop/saas-platform/ .
+
+# Build Nest
 RUN npm run build
-HEAD
 
 EXPOSE 3000
 
-CMD ["sh", "-c", "npx prisma migrate deploy && npm run start:prod"]
-
-
-EXPOSE 3000
-CMD ["sh","-lc","npx prisma migrate deploy && npm run start:prod"]
- main
+# Migrate then run
+CMD ["sh","-lc","npx prisma migrate deploy && node dist/src/main.js"]
